@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kalanapp/view/reestablish_screen.dart';
 import '../constants/colors.dart';
 import 'package:kalanapp/auth/google_signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../home_screen.dart';
 import 'register_page.dart';
-import 'package:kalanapp/auth/email_signin.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,8 +15,6 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   bool rememberMe = false;
   bool _obscureText = true;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
 
   Future<void> signInWithGoogle(BuildContext context) async {
     final UserCredential? userCredential =
@@ -104,7 +100,6 @@ class LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: 42,
                             child: TextField(
-                              controller: emailController,
                               textAlign: TextAlign.left,
                               decoration: InputDecoration(
                                 labelText: 'Correo Electrónico',
@@ -128,7 +123,6 @@ class LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: 42,
                             child: TextField(
-                              controller: passwordController,
                               textAlign: TextAlign.left,
                               obscureText: _obscureText,
                               decoration: InputDecoration(
@@ -185,18 +179,7 @@ class LoginPageState extends State<LoginPage> {
                             inactiveTrackColor: ColorConstants.jazPalette2,
                           ),
                           MaterialButton(
-                            onPressed: () async{
-                              String email = emailController.text; // Obtener el valor del campo de texto
-                              String password = passwordController.text; // Obtener el valor del campo de contraseña
-
-                              //verificacion del auteticacion
-                              await Auth().singInWithEmailAndPassword(email: email, password: password);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context)=>HomeScreen(),
-                                ),
-                              );
-                            },
+                            onPressed: () {},
                             color: ColorConstants.jazPalette1,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(31),
@@ -274,14 +257,7 @@ class LoginPageState extends State<LoginPage> {
                           const SizedBox(
                             height: 22,
                           ),
-                      // dirige a la pagina de restablecimiento de contraseña
-                      GestureDetector(
-                        onTap: () => Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => const reestablisPage(),
-                          ),
-                        ),
-                          child: Text(
+                          Text(
                             'Olvidé mi contraseña',
                             style: TextStyle(
                               fontSize: 14,
@@ -290,7 +266,6 @@ class LoginPageState extends State<LoginPage> {
                             ),
                             textAlign: TextAlign.center,
                           ),
-                      ),
                         ],
                       ),
                     ),
