@@ -105,7 +105,6 @@ class reestablisPageState extends State<reestablisPage>{
                                   ),
                                 ),
                               ),
-
                               const SizedBox(
                                 height: 25,
                               ),
@@ -141,8 +140,6 @@ class reestablisPageState extends State<reestablisPage>{
                             ),
                           ),
                         )
-
-
                       ],
                     ),
                   ),
